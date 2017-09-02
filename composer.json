@@ -1,0 +1,7 @@
+{
+  "name" : "Member_manage",
+  "repositories" : [ {
+    "type" : "composer",
+    "url" : "https://packagist.org/"
+  } ]
+}
