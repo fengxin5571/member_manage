@@ -16,16 +16,16 @@ define ( 'TEMPLATE_CACHE', ADMIN_BASE . '/cache/' );
 
 //OSAdmin常量
 define ( 'ADMIN_URL' ,'http://localhost/Member_manage');
-define ( 'ADMIN_TITLE' ,'管理后台');
-define ( 'COMPANY_NAME' ,'OSAdmin.org');
+define ( 'ADMIN_TITLE' ,'会员管理后台');
+define ( 'COMPANY_NAME' ,'会员管理系统');
 
 //OSAdmin数据库设置
 define ( 'OSA_DB_ID' ,'osadmin');
 $DATABASE_LIST[OSA_DB_ID] = array (
-	"server"=>'127.0.0.1',
+	"server"=>'60.205.153.37',
 	"port"=>'3306',
 	"username"=> 'root', 
-	"password"=>'root', 
+	"password"=>'abc..123##@)5', 
 	"db_name"=>'osadmin' );
 
 //样例数据库设置
@@ -65,6 +65,7 @@ $OSADMIN_COMMAND_FOR_LOG=array(
 							'LOGOUT'=>'退出',
 							'PAUSE'=>'封停',
 							'PLAY'=>'解封',
+                            "SET"  =>'设置',
 				);
 
 $OSADMIN_CLASS_FOR_LOG=array(
@@ -75,5 +76,8 @@ $OSADMIN_CLASS_FOR_LOG=array(
 							'MenuUrl'=>'功能',
 							'GroupRole'=>'权限',
 							'QuickNote'=>'QuickNote',
+                           'Projectclass'=>"项目分类",
+                           "Project"      =>"项目",
+                           "Postage"   =>"项目资费",
 					);
 ?>

@@ -29,14 +29,25 @@ class Medoo{
 			echo $e->getMessage();
 		}
 	}
-	
+	//开启事务
+	public function beginTransaction(){
+	    $this->pdo->beginTransaction();
+	}
+	//提交事务
+	public function commit(){
+	    $this->pdo->commit();
+	}
+	//回滚事务
+	public function rollBack(){
+	    $this->pdo->rollBack();
+	}
 	public function query($query)
 	{
 		$this->queryString = $query;
 		
 		return $this->pdo->query($query);
 	}
-
+  
 	public function exec($query)
 	{
 		$this->queryString = $query;
@@ -158,7 +169,7 @@ class Medoo{
 			$single_condition = array_diff_key($where, array_flip(
 				explode(' ', 'AND OR GROUP ORDER HAVING LIMIT LIKE MATCH')
 			));
-
+          
 			if ($single_condition != array())
 			{
 				$where_clause = ' WHERE ' . $this->data_implode($single_condition, '');
@@ -267,11 +278,11 @@ class Medoo{
 			$table = $match[1] . ' ' . $join_array[ $match[3] ] . ' JOIN ' . $match[4] . ' ON ';
 			$where_clause = str_replace(' WHERE ', '', $where_clause);
 		}
-
+        
 		$query = $this->query('SELECT ' . (
 			is_array($columns) ? implode(', ', $columns) : $columns
 		) . ' FROM ' . $table . $where_clause);
-
+       
 		return $query ? $query->fetchAll(PDO::FETCH_ASSOC)
 		 : false;
 		
@@ -387,6 +398,7 @@ class Medoo{
 
 	public function count($table, $where = null)
 	{
+	    
 		return 0 + ($this->query('SELECT COUNT(*) FROM ' . $table . $this->where_clause($where))->fetchColumn());
 	}
 

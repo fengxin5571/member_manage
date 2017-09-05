@@ -14,9 +14,9 @@
 			<div class="http-error">
 				
 				<{if $type =="success" }>
-				<h1>Yep!</h1>
+				<h1>成功!</h1>
 				<{elseif $type=="error" }>
-				<h1>Oops!</h1>
+				<h1>错误!</h1>
 				<{else }>
 				<h1>O~!</h1>
 				<{/if }>

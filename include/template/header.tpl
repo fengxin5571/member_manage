@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title><{$page_title}> - <{$smarty.const.ADMIN_TITLE}> - Powered by OSAdmin!</title>
+    <title><{$page_title}> - <{$smarty.const.ADMIN_TITLE}> - 会员管理系统!</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -21,6 +21,8 @@
 	<script src="<{$smarty.const.ADMIN_URL}>/assets/lib/bootstrap/js/bootstrap-modal.js"></script>
 	<script src="<{$smarty.const.ADMIN_URL}>/assets/js/other.js"></script>
 	<script src="<{$smarty.const.ADMIN_URL}>/assets/js/jquery-ui.js"></script>
+	<script src="<{$smarty.const.ADMIN_URL}>/assets/js/jquery.validate.min.js"></script>
+	<script src="<{$smarty.const.ADMIN_URL}>/assets/js/messages_zh.js"></script>
     <!-- Demo page code -->
 
     <style type="text/css">

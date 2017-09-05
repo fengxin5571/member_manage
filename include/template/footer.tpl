@@ -3,7 +3,7 @@
 					<footer>
                         <hr>
 
-                        <p>&copy; 2017 <a href="http://osadmin.org" target="_blank">OSAdmin</a></p>
+                        <p style="text-align: center;">&copy; 2017 <a href="#" target="_blank">Member_manage_system</a></p>
                     </footer>
 				</div>
 			</div>

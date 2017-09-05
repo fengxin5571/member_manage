@@ -16,7 +16,7 @@ class Member extends Base{
         if($page_size){
             $limit =" limit $start,$page_size ";
         }
-        $sql="select * from ".self::$table_name."";
+        $sql="select  *  from ".self::$table_name." order by member_id desc ".$limit;
         $list = $db->query($sql)->fetchAll();
         if ($list) {
             return $list;
@@ -40,5 +40,11 @@ class Member extends Base{
         $db=self::__instance();
         $result=$db->delete(self::$table_name,$user_id);
         return $result;
+    }
+    //会员总数
+    public static function count($condition = '') {
+        $db=self::__instance();
+        $num = $db->count ( self::getTableName(), $condition );
+        return $num;
     }
 }
