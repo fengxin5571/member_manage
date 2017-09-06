@@ -14,6 +14,8 @@ if($search){
     $member_list= Member::getAllMember($start,$page_size);
 }
 
-
+//追加操作的确认层
+$confirm_html = OSAdmin::renderJsConfirm("icon-pause,icon-play,icon-remove");
+Template::assign ( 'osadmin_action_confirm' , $confirm_html);
 Template::assign ( 'page_no', $page_no );
 Template::display ( 'panel/members.tpl' );

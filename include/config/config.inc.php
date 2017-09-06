@@ -79,5 +79,7 @@ $OSADMIN_CLASS_FOR_LOG=array(
                            'Projectclass'=>"项目分类",
                            "Project"      =>"项目",
                            "Postage"   =>"项目资费",
+                           "Recommend"=>' 推荐',
+                           "Sales"              =>'销售管理'
 					);
 ?>

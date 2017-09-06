@@ -1,5 +1,6 @@
 <?php
-error_reporting( E_ALL );
+error_reporting(E_ALL);
+ini_set('display_errors',0);
 require 'config/config.inc.php';
 session_start();
 function OSAdminAutoLoad($classname){

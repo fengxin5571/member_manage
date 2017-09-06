@@ -11,7 +11,7 @@ if($method =="set_postage"&&!empty($project_id)){
            $update_array[2]=array("postage_type"=>2,"postage_price"=>$postage_type_2_price,"postage_count"=>$postage_type_2_count,"project_id"=>$project_id);
            $update_ids=Projectpostage::update_postage($project_id, $update_array);
            if(count($update_ids)==2){
-               SysLog::addLog ( UserSession::getUserName(), 'SET', 'Postage' ,"$project_id",'SUCCESS' );
+               SysLog::addLog ( UserSession::getUserName(), 'SET', 'Postage' ,"$project_id" );
                Common::exitWithSuccess("设置项目资费成功", "panel/project_postage.php");
            }
            OSAdmin::alert("error");
@@ -26,7 +26,7 @@ if($method =="set_postage"&&!empty($project_id)){
        $insert_array[2]=array("postage_type"=>2,"postage_price"=>$postage_type_2_price,"postage_count"=>$postage_type_2_count,"project_id"=>$project_id);
        $insert_ids=Projectpostage::add_postage($insert_array);
       if(count($insert_ids)==2){
-          SysLog::addLog ( UserSession::getUserName(), 'SET', 'Postage' ,$project_id,'SUCCESS' );
+          SysLog::addLog ( UserSession::getUserName(), 'SET', 'Postage' ,$project_id );
           Common::exitWithSuccess("设置项目资费成功", "panel/project_postage.php");
       }
    }
