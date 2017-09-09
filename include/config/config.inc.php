@@ -18,6 +18,8 @@ define ( 'TEMPLATE_CACHE', ADMIN_BASE . '/cache/' );
 define ( 'ADMIN_URL' ,'http://localhost/Member_manage');
 define ( 'ADMIN_TITLE' ,'会员管理后台');
 define ( 'COMPANY_NAME' ,'会员管理系统');
+define('ADMIN_VERSION',"1.0");
+define('DEBUG',1);
 
 //OSAdmin数据库设置
 define ( 'OSA_DB_ID' ,'osadmin');
@@ -80,6 +82,7 @@ $OSADMIN_CLASS_FOR_LOG=array(
                            "Project"      =>"项目",
                            "Postage"   =>"项目资费",
                            "Recommend"=>' 推荐',
-                           "Sales"              =>'销售管理'
+                           "Sales"              =>'销售管理',
+                           "Member"       =>"会员管理"
 					);
 ?>

@@ -5,7 +5,7 @@
 <{$osadmin_action_alert}>
 <{$osadmin_quick_note}>
 <div class="btn-toolbar" style="margin-bottom:2px;">
-    <a href="user_add.php" class="btn btn-primary"><i class="icon-plus"></i> 账号</a>
+    <a href="user_add.php" class="btn btn-primary"><i class="icon-plus"></i> 会员办卡</a>
 	<a data-toggle="collapse" data-target="#search"  href="#" title= "检索"><button class="btn btn-primary" style="margin-left:5px"><i class="icon-search"></i></button></a>
 </div>
 <{if $_GET.search }>
@@ -15,7 +15,7 @@
 <{/if }>
 <form class="form_search"  action="" method="GET" style="margin-bottom:0px">
 	<div style="float:left;margin-right:5px">
-		<label>选择账号组</label>
+		<label>选择会员等级</label>
 		<{html_options name=user_group id="DropDownTimezone" class="input-xlarge" options=$group_options selected=$_GET.user_group}>
 	</div>
 	<div style="float:left;margin-right:5px">

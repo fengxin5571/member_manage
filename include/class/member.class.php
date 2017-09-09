@@ -4,19 +4,23 @@ class Member extends Base{
     // 表名
     private static $table_name = 'member';
     //查询字段
-    private  static $columns ="";
+    private  static $columns ="member_id,member_name,member_moblie,member_card,member_level_id,member_sex,member_age";
     
     public static function getTableName(){
         return parent::$table_prefix.self::$table_name;
     }
     //会员列表
-    public static function getAllMember($start ='' ,$page_size='' ){
+    public static function getAllMember($start ='' ,$page_size='' ,$member_condition="",$member_level=0){
         $db=self::__instance();
         $limit ="";
+        $where="1=1";
         if($page_size){
             $limit =" limit $start,$page_size ";
         }
-        $sql="select  *  from ".self::$table_name." order by member_id desc ".$limit;
+        if($member_level>0){
+            $where.=" AND  member_leavel_id=".$member_level;
+        }
+        $sql="select  *  from ".self::getTableName()." as m LEFT JOIN ".Memberlevel::getTableName()." as ml ON m.member_level_id=ml.m_level_id WHERE ".$where." ORDER BY m.member_id desc ".$limit;
         $list = $db->query($sql)->fetchAll();
         if ($list) {
             return $list;

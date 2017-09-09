@@ -147,7 +147,6 @@ class User extends Base{
 		$user_info = UserSession::getSessionInfo();
 		
 		$role_menu_url = MenuUrl::getMenuByRole ( $user_info['user_role']);
-		
 		$search_result = in_array ( $action_url, $role_menu_url );
 		if (! $search_result) {
 			Common::exitWithMessage ('您当前没有权限访问该功能，如需访问请联系管理员开通权限','index.php' );

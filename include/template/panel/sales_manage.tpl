@@ -20,15 +20,14 @@
 <form class="form_search"  action="" method="GET" style="margin-bottom:0px">
 	<div style="float:left;margin-right:5px">
 		<label>选择消费类型</label>
-		<select name="sales_type">
-		<option value="">-请选择-</option>
+		<select name="sales_type" >
 		<option value="1">非会员</option>
 		<option value="2">会员卡</option>
 		</select>
 	</div>
 	<div style="float:left;margin-right:5px">
 		<label>查询所有顾客请留空</label>
-		<input type="text" name="user_name" value="<{$_GET.user_name}>" placeholder="输入顾客姓名" > 
+		<input type="text" name="sales_people_name" value="<{$_GET.user_name}>" placeholder="输入顾客姓名" > 
 		<input type="hidden" name="search" value="1" > 
 	</div>
 	<div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
@@ -50,36 +49,28 @@
 					<th style="width:80px">消费类型</th>
 					<th style="width:80px">项目分类</th>
 					<th style="width:80px">消费金额</th>
+					<th style="width:80px">消费时间</th>
 					<th style="width:80px">操作人员</th>
 					<th style="width:80px">操作</th>
                 </tr>
               </thead>
               <tbody>							  
-                <{foreach name=user from=$user_infos item=user_info}>				 
+                <{foreach  from=$sales_list item=sales}>				 
 					<tr>
-					<td><{$user_info.user_id}></td>
-					<td><{$user_info.user_name}></td>
-					<td><{$user_info.real_name}></td>
-					<td><{$user_info.mobile}></td>
-					<td><{$user_info.email}></td>
-					<td><{$user_info.login_time}></td>
-					<td><{$user_info.login_ip}></td>
+					<td><{$sales.sales_id}></td>
+					<td><{$sales.sales_people_name}></td>
+					<td><{$sales.sales_people_mobile}></td>
 					<td><{$user_info.group_name}></td>
-					<td><{$user_info.user_desc}></td>
+					<td><{if $sales.sales_type ==1}>非会员<{else}>会员<{/if}></td>
+					<td><{$sales.p_class_name}></td>
+					<td>￥<{$sales.sales_price}></td>
+					<td><{$sales.sales_add_time}></td>
+					<td><{$sales.sales_admin_name}></td>
 					<td>
-					<a href="user_modify.php?user_id=<{$user_info.user_id}>" title= "修改" ><i class="icon-pencil"></i></a>
+					<a href="sales_manage.php?method=sales_info&sales_id=<{$sales.sales_id}>" title= "查看详单" ><i class="icon-folder-open"></i></a>
 					&nbsp;
+					<a data-toggle="modal" href="#myModal" title= "删除" ><i class="icon-remove" href="sales_del.php?sales_id=<{$sales.sales_id}>" ></i></a>
 					
-					<{if $user_info.user_id != 1}>
-					<{if $user_info.status == 1}>
-					<a data-toggle="modal" href="#myModal"  title= "封停账号" ><i class="icon-pause" href="users.php?page_no=<{$page_no}>&method=pause&user_id=<{$user_info.user_id}>"></i></a>
-					<{/if }>
-					<{if $user_info.status == 0}>
-					<a data-toggle="modal" href="#myModal" title= "解封账号" ><i class="icon-play" href="users.php?page_no=<{$page_no}>&method=play&user_id=<{$user_info.user_id}>"></i></a>
-					<{/if }>
-					&nbsp;
-					<a data-toggle="modal" href="#myModal" title= "删除" ><i class="icon-remove" href="users.php?page_no=<{$page_no}>&method=del&user_id=<{$user_info.user_id}>" ></i></a>
-					<{/if}>
 					</td>
 					</tr>
 				<{/foreach}>

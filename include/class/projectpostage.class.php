@@ -16,6 +16,7 @@ class Projectpostage extends Base{
         }
         $db=self::__instance();
         $condition['project_id']=$project_id;
+        $condition['ORDER']="postage_type asc";
         $list=$db->select(self::getTableName(),self::$columns,$condition);
         return $list;
     }

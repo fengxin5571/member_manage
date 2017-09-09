@@ -140,6 +140,7 @@ class Common {
 		$sys_info_array ['diskfree'] = intval ( diskfreespace ( "." ) / (1024 * 1024) ) . 'Mb';
 		$sys_info_array ['current_user'] = @get_current_user ();
 		$sys_info_array ['timezone'] = date_default_timezone_get();
+		$sys_info_array["admin_version"]=ADMIN_VERSION;
 		$db=new Medoo(OSA_DB_ID);
 		$mysql_version = $db->query("select version()")->fetchAll();
 		$sys_info_array ['mysql_version'] = $mysql_version[0]['version()'];

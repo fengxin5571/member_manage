@@ -282,7 +282,6 @@ class Medoo{
 		$query = $this->query('SELECT ' . (
 			is_array($columns) ? implode(', ', $columns) : $columns
 		) . ' FROM ' . $table . $where_clause);
-       
 		return $query ? $query->fetchAll(PDO::FETCH_ASSOC)
 		 : false;
 		

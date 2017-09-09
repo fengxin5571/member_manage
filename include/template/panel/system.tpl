@@ -7,7 +7,8 @@
 	<div id="page-stats" class="block-body collapse in">
 	
 	 <table class="table table-striped">
-              <tbody>							  
+              <tbody>					
+                    <tr><td>系统版本</td><td><{$sys_info.admin_version}></td></tr>		  
 					<tr><td>服务器时间</td><td><{$sys_info.gmt_time}> (格林威治标准时间)</td></tr>
 					<tr><td>服务器时间</td><td><{$sys_info.bj_time}> (北京时间)</td></tr>
 					<tr><td>服务器ip地址</td><td><{$sys_info.server_ip}></td></tr>

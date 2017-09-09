@@ -1,6 +1,5 @@
 <?php
 error_reporting(E_ALL);
-ini_set('display_errors',0);
 require 'config/config.inc.php';
 session_start();
 function OSAdminAutoLoad($classname){
@@ -47,8 +46,9 @@ date_default_timezone_set($_SESSION['osa_timezone']);
 如"/nologin/","/nologin/aaa/"
 */
 
-$no_need_login_page=array("/block.php","/panel/login.php","/panel/logout.php",);
-
+$no_need_login_page=array("/block.php","/panel/login.php","/panel/logout.php","/ajax/project_item.php");
+//是否开启错误
+ini_set('display_errors',DEBUG);
 //如果不需要登录就可以访问的话
 $action_url = Common::getActionUrl();
 if( OSAdmin::checkNoNeedLogin($action_url,$no_need_login_page) ){	

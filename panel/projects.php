@@ -1,6 +1,6 @@
 <?php
 require ('../include/init.inc.php');
-$search=$project_name=$project_class_id=$project_desc=$method=$project_id="";
+$search=$project_name=$project_class_id=$project_desc=$method=$project_id=$page_no="";
 extract ( $_REQUEST, EXTR_IF_EXISTS );
 //START 数据库查询及分页数据
 $page_size = PAGE_SIZE;
