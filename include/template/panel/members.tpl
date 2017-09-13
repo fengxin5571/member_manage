@@ -5,7 +5,7 @@
 <{$osadmin_action_alert}>
 <{$osadmin_quick_note}>
 <div class="btn-toolbar" style="margin-bottom:2px;">
-    <a href="user_add.php" class="btn btn-primary"><i class="icon-plus"></i> 会员办卡</a>
+    <a href="member_add.php" class="btn btn-primary"><i class="icon-plus"></i> 会员办卡</a>
 	<a data-toggle="collapse" data-target="#search"  href="#" title= "检索"><button class="btn btn-primary" style="margin-left:5px"><i class="icon-search"></i></button></a>
 </div>
 <{if $_GET.search }>
@@ -16,11 +16,16 @@
 <form class="form_search"  action="" method="GET" style="margin-bottom:0px">
 	<div style="float:left;margin-right:5px">
 		<label>选择会员等级</label>
-		<{html_options name=user_group id="DropDownTimezone" class="input-xlarge" options=$group_options selected=$_GET.user_group}>
+		<select name="member_level_id">
+		<option>-请选择-</option>
+		<{foreach from=$member_level item=level}>
+		<option value='<{$level.m_level_id}>'><{$level.m_level_name}></option>
+		<{/foreach}>
+		</select>
 	</div>
 	<div style="float:left;margin-right:5px">
-		<label>查询所有用户请留空</label>
-		<input type="text" name="user_name" value="<{$_GET.user_name}>" placeholder="输入登录名" > 
+		<label>查询所有会员请留空</label>
+		<input type="text" name="member_condition" value="<{$_GET.user_name}>" placeholder="输入会员卡号或手机" > 
 		<input type="hidden" name="search" value="1" > 
 	</div>
 	<div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
@@ -36,43 +41,37 @@
               <thead>
                 <tr>
 					<th style="width:20px">#</th>
-					<th style="width:80px">登录名</th>
+					<th style="width:80px">会员卡号 </th>
 					<th style="width:100px">姓名</th>
 					<th style="width:100px">手机</th>
-					<th style="width:80px">邮箱</th>
-					<th style="width:80px">登录时间</th>
-					<th style="width:80px">登录IP</th>
-					<th style="width:80px">Group#</th>
-					<th style="width:80px">描述</th>
+					<th style="width:80px">会员性别</th>
+					<th style="width:80px">会员年龄</th>
+					<th style="width:80px">加入时间</th>
+					<th style="width:80px">会员等级#</th>
 					<th style="width:80px">操作</th>
                 </tr>
               </thead>
               <tbody>							  
-                <{foreach name=user from=$user_infos item=user_info}>				 
+                <{foreach name=user from=$member_list item=member}>				 
 					<tr>
-					<td><{$user_info.user_id}></td>
-					<td><{$user_info.user_name}></td>
-					<td><{$user_info.real_name}></td>
-					<td><{$user_info.mobile}></td>
-					<td><{$user_info.email}></td>
-					<td><{$user_info.login_time}></td>
-					<td><{$user_info.login_ip}></td>
-					<td><{$user_info.group_name}></td>
-					<td><{$user_info.user_desc}></td>
+					<td><{$member.member_id}></td>
+					<td style="color:#0088cc"><{$member.member_card}></td>
+					<td><{$member.member_name}></td>
+					<td><{$member.member_mobile}></td>
+					<td><{if $member_sex ==0}>男<{else}>女<{/if}></td>
+					<td><{$member.member_age}></td>
+					<td><{$member.member_add_time}></td>
+					<td><{$member.m_level_name}></td>
+				
 					<td>
-					<a href="user_modify.php?user_id=<{$user_info.user_id}>" title= "修改" ><i class="icon-pencil"></i></a>
+					<a href="member_list.php?method=edit&member_id=<{$member.member_id}>" title= "修改" ><i class="icon-pencil"></i></a>
+					&nbsp;
+					<a href="user_modify.php?user_id=<{$user_info.user_id}>" title= "查看余额" ><i class="icon-calendar"></i></a>
 					&nbsp;
 					
-					<{if $user_info.user_id != 1}>
-					<{if $user_info.status == 1}>
-					<a data-toggle="modal" href="#myModal"  title= "封停账号" ><i class="icon-pause" href="users.php?page_no=<{$page_no}>&method=pause&user_id=<{$user_info.user_id}>"></i></a>
-					<{/if }>
-					<{if $user_info.status == 0}>
-					<a data-toggle="modal" href="#myModal" title= "解封账号" ><i class="icon-play" href="users.php?page_no=<{$page_no}>&method=play&user_id=<{$user_info.user_id}>"></i></a>
-					<{/if }>
 					&nbsp;
 					<a data-toggle="modal" href="#myModal" title= "删除" ><i class="icon-remove" href="users.php?page_no=<{$page_no}>&method=del&user_id=<{$user_info.user_id}>" ></i></a>
-					<{/if}>
+					
 					</td>
 					</tr>
 				<{/foreach}>

@@ -4,7 +4,7 @@ class Member extends Base{
     // 表名
     private static $table_name = 'member';
     //查询字段
-    private  static $columns ="member_id,member_name,member_moblie,member_card,member_level_id,member_sex,member_age";
+    private  static $columns ="member_id,member_name,member_moblie,member_card,member_level_id,member_sex,member_age,member_add_time";
     
     public static function getTableName(){
         return parent::$table_prefix.self::$table_name;
@@ -13,27 +13,65 @@ class Member extends Base{
     public static function getAllMember($start ='' ,$page_size='' ,$member_condition="",$member_level=0){
         $db=self::__instance();
         $limit ="";
-        $where="1=1";
+        $where="1=1 ";
         if($page_size){
             $limit =" limit $start,$page_size ";
         }
+        if($member_condition){
+            if(preg_match("/^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/", $member_condition)){
+                $where.=" AND member_mobile='$member_condition'";
+            }else{
+                $where.=" AND member_card LIKE '%$member_condition%'";
+            }
+        }
         if($member_level>0){
-            $where.=" AND  member_leavel_id=".$member_level;
+            $where.=" AND  member_level_id=".$member_level;
         }
         $sql="select  *  from ".self::getTableName()." as m LEFT JOIN ".Memberlevel::getTableName()." as ml ON m.member_level_id=ml.m_level_id WHERE ".$where." ORDER BY m.member_id desc ".$limit;
         $list = $db->query($sql)->fetchAll();
         if ($list) {
+            foreach ($list as &$value){
+                $value['member_add_time']=Common::getDateTime($value['member_add_time']);
+            }
             return $list;
         }
         return array ();
     }
-    //添加会员
-    public static function addMember($user_data ){
-        if(!$user_data||!is_array($user_data)){
+    //获取单个会员信息
+    public static function get_member_info($member_id){
+        if(empty($member_id)){
             return false;
         }
         $db=self::__instance();
-        $id = $db->insert ( self::getTableName(), $user_data );
+        $condition['member_id']=$member_id;
+        $member_info=$db->get(self::getTableName(),"*",$condition);
+        return $member_info;
+    }
+    //添加会员
+    public static function addMember($user_data,$member_money ){
+        if(!$user_data||!is_array($user_data)||empty($member_money)){
+            return false;
+        }
+        $db=self::__instance();
+        $db->beginTransaction();
+        try{
+            $id = $db->insert ( self::getTableName(), $user_data );
+            if(!$id){
+                throw new Exception("insert member error");
+            }
+            $money_array=array(
+                "m_member_id"=>$id,
+                "m_money_price"=>$member_money
+            );
+            $result=MemberMoney::update_money($money_array);
+            if(!$result){
+                throw new Exception("insert member_money error");
+            }
+            $db->commit();
+            
+        }catch (Exception $e){
+            $db->rollBack();
+        }
         return $id;
     }
     //删除会员
@@ -50,5 +88,19 @@ class Member extends Base{
         $db=self::__instance();
         $num = $db->count ( self::getTableName(), $condition );
         return $num;
+    }
+    //是否唯一
+    public static function is_only($member_mobile){
+        if(empty($member_mobile)){
+            return false;
+        }
+        $db=self::__instance();
+        $condition['member_mobile']=$member_mobile;
+        $member_count=$db->count(self::getTableName(),$condition);
+        if($member_count){
+            return false;
+        }else{
+            return true;
+        }
     }
 }
