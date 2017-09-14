@@ -66,11 +66,11 @@
 					<td>
 					<a href="member_list.php?method=edit&member_id=<{$member.member_id}>" title= "修改" ><i class="icon-pencil"></i></a>
 					&nbsp;
-					<a href="user_modify.php?user_id=<{$user_info.user_id}>" title= "查看余额" ><i class="icon-calendar"></i></a>
+					<a href="member_list.php?method=member_detailed&member_id=<{$member.member_id}>" title= "查看余额" ><i class="icon-calendar"></i></a>
 					&nbsp;
 					
 					&nbsp;
-					<a data-toggle="modal" href="#myModal" title= "删除" ><i class="icon-remove" href="users.php?page_no=<{$page_no}>&method=del&user_id=<{$user_info.user_id}>" ></i></a>
+					<a data-toggle="modal" href="#myModal" title= "删除" ><i class="icon-remove" href="member_del.php?method=del&member_id=<{$member.member_id}>" ></i></a>
 					
 					</td>
 					</tr>

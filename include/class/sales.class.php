@@ -66,6 +66,7 @@ class Sales extends Base{
                     if(!$insert_item_id){
                         throw  new Exception("insert error");
                     }
+                    
                 }
                 
             }else{

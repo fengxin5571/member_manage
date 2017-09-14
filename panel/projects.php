@@ -30,7 +30,7 @@ if($method=="add_project"){
     if(Common::isPost()){//是否提交修改
         $update_array=array("project_name"=>$project_name,"project_desc"=>$project_desc,"project_class_id"=>$project_class_id);
         $result=Project::updateProject($update_array, $project_id);
-        if($result){
+        if($result===0||$result){
             SysLog::addLog ( UserSession::getUserName(), 'UPDATE', 'Project' ,$project_id,'SUCCESS' );
             Common::exitWithSuccess ('项目修改成功','panel/projects.php');
         }

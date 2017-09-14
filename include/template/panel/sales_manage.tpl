@@ -8,8 +8,8 @@
 <{$osadmin_quick_note}>
 
 <div class="btn-toolbar" style="margin-bottom:2px;">
-    <a href="sales_manage.php?method=add_salse_type1" class="btn btn-primary"><i class="icon-plus"></i> 非会员消费录入</a>
-	<a data-toggle="collapse"   href="#" title= "检索"><button class="btn btn-primary" style="margin-left:5px"><i class="icon-plus"></i>会员消费录入</button></a>
+    <a href="sales_manage.php?method=add_salse_type1" class="btn btn-primary" title="非会员消费录入"><i class="icon-plus"></i> 非会员消费录入</a>
+	<a  href="sales_manage.php?method=add_salse_type2" title= "会员消费录入" class="btn btn-primary"><i class="icon-plus"></i>会员消费录入</a>
      <a data-toggle="collapse" data-target="#search"  href="#" title= "检索"><button class="btn btn-primary" style="margin-left:5px"><i class="icon-search"></i></button></a>
 </div>
 <{if $_GET.search }>

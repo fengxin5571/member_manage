@@ -26,7 +26,7 @@ if($method =='add_class'){//增加
     if(Common::isPost()){
         $update_aray=array('p_class_name'=>$p_class_name,"p_class_desc"=>$p_class_desc);
         $result=Projectclass::update_project_class($p_id, $update_aray);
-        if($result){
+        if($result===0||$result){
             SysLog::addLog ( UserSession::getUserName(), 'UPDATE', 'Projectclass' ,$p_id, json_encode($update_aray)  );
             Common::exitWithSuccess ('项目分类修改成功','panel/project_class.php');
         }

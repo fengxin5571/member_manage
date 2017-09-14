@@ -19,7 +19,7 @@ if($method=="add_level"){//增加会员等级
     if(Common::isPost()){
         $update_array=array("m_level_name"=>$m_level_name,"m_level_desc"=>$m_level_desc,"m_level_condition"=>$m_level_condition);
         $result=Memberlevel::update_level($m_level_id, $update_array);
-        if($result){
+        if($result===0||$result){
             SysLog::addLog ( UserSession::getUserName(), 'UPDATE', 'Member' ,$result );
             Common::exitWithSuccess ('会员等级修改成功','panel/member_level.php');
         }

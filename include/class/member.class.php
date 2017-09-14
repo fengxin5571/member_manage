@@ -27,7 +27,7 @@ class Member extends Base{
         if($member_level>0){
             $where.=" AND  member_level_id=".$member_level;
         }
-        $sql="select  *  from ".self::getTableName()." as m LEFT JOIN ".Memberlevel::getTableName()." as ml ON m.member_level_id=ml.m_level_id WHERE ".$where." ORDER BY m.member_id desc ".$limit;
+        $sql="SELECT *  from ".self::getTableName()." as m LEFT JOIN ".Memberlevel::getTableName()." as ml ON m.member_level_id=ml.m_level_id WHERE ".$where." ORDER BY m.member_id desc ".$limit;
         $list = $db->query($sql)->fetchAll();
         if ($list) {
             foreach ($list as &$value){
@@ -45,16 +45,20 @@ class Member extends Base{
         $db=self::__instance();
         $condition['member_id']=$member_id;
         $member_info=$db->get(self::getTableName(),"*",$condition);
+        if($member_info){
+            $member_info['member_add_time']=Common::getDateTime($member_info['member_add_time']);
+        }
         return $member_info;
     }
+    
     //添加会员
     public static function addMember($user_data,$member_money ){
-        if(!$user_data||!is_array($user_data)||empty($member_money)){
+        if(empty($user_data)&&!is_array($user_data)||empty($member_money)){
             return false;
         }
         $db=self::__instance();
-        $db->beginTransaction();
         try{
+            $db->beginTransaction();
             $id = $db->insert ( self::getTableName(), $user_data );
             if(!$id){
                 throw new Exception("insert member error");
@@ -68,11 +72,12 @@ class Member extends Base{
                 throw new Exception("insert member_money error");
             }
             $db->commit();
-            
+            return $id;
         }catch (Exception $e){
             $db->rollBack();
+            return false;
         }
-        return $id;
+       
     }
     //删除会员
     public static function dropMember($user_id){
@@ -80,7 +85,8 @@ class Member extends Base{
             return false;
         }
         $db=self::__instance();
-        $result=$db->delete(self::$table_name,$user_id);
+        $condition['member_id']=$user_id;
+        $result=$db->delete(self::getTableName(),$condition);
         return $result;
     }
     //会员总数
@@ -102,5 +108,31 @@ class Member extends Base{
         }else{
             return true;
         }
+    }
+    //编辑会员
+    public static function update_member($member_id,$member_data,$price=0){
+        if(empty($member_id)||empty($member_data)&&!is_array($member_data)){
+            return false;
+        }
+        $db=self::__instance();
+        try{
+            $db->beginTransaction();
+            $condition['member_id']=$member_id;
+            $result=$db->update(self::getTableName(),$member_data,$condition);
+            if($result!==0&&!$result){
+                throw new Exception('update member error');
+            }
+            if($price>0){
+                $money_data['m_member_id']=$member_id;
+                $money_data['m_money_price']=$price;
+                MemberMoney::update_money($money_data);
+            }
+             $db->commit();
+             return $result;
+        }catch (Exception $e){
+            $db->rollBack();
+            return false;
+        }
+        
     }
 }

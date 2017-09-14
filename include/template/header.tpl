@@ -23,6 +23,7 @@
 	<script src="<{$smarty.const.ADMIN_URL}>/assets/js/jquery-ui.js"></script>
 	<script src="<{$smarty.const.ADMIN_URL}>/assets/js/jquery.validate.min.js"></script>
 	<script src="<{$smarty.const.ADMIN_URL}>/assets/js/messages_zh.js"></script>
+	<script src="<{$smarty.const.ADMIN_URL}>/assets/js/sales.js"></script>
     <!-- Demo page code -->
 
     <style type="text/css">

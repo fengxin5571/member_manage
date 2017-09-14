@@ -42,6 +42,9 @@
 				<option value="<{$level.m_level_id}>" <{if $member_info.member_level_id ==$level.m_level_id}>selected<{/if}>><{$level.m_level_name}></option>
 				<{/foreach}>
 				</select>
+				<{if $method=='edit'}>
+				&nbsp;&nbsp;<span style="color:#0088cc">如果修改了会员等级，会员余额不会清空</span>
+				<{/if}>
 			<div class="btn-toolbar">
 				<button type="submit" class="btn btn-primary"><strong>提交</strong></button>
 				<div class="btn-group"></div>
