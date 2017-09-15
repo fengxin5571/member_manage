@@ -43,10 +43,10 @@
               <thead>
                 <tr>
 					<th style="width:20px">#</th>
-					<th style="width:80px">顾客姓名</th>
+					<th style="width:50px">顾客姓名</th>
 					<th style="width:80px">手机</th>
-					<th style="width:80px">顾客身份</th>
-					<th style="width:80px">消费类型</th>
+					<th style="width:80px">会员卡号</th>
+					<th style="width:50px">消费类型</th>
 					<th style="width:80px">项目分类</th>
 					<th style="width:80px">消费金额</th>
 					<th style="width:80px">消费时间</th>
@@ -60,7 +60,7 @@
 					<td><{$sales.sales_id}></td>
 					<td><{$sales.sales_people_name}></td>
 					<td><{$sales.sales_people_mobile}></td>
-					<td><{$user_info.group_name}></td>
+					<td><{if $sales.sales_type==2}><{$sales.sales_people_card}><{else}>非会员消费<{/if}></td>
 					<td><{if $sales.sales_type ==1}>非会员<{else}>会员<{/if}></td>
 					<td><{$sales.p_class_name}></td>
 					<td>￥<{$sales.sales_price}></td>

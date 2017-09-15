@@ -8,7 +8,7 @@
 
 <div class="well">
     <ul class="nav nav-tabs">
-      <li class="active" style="margin-left: 50em;"><a href="#home" data-toggle="tab" style="color: #0088cc;">非会员消费 - 消费明细查看</a></li>
+      <li class="active" style="padding-left: 45%;"><a href="#home" data-toggle="tab" style="color: #0088cc;">非会员消费 - 消费明细查看</a></li>
     </ul>	
 	
 	<div id="myTabContent" class="tab-content">

@@ -4,7 +4,7 @@ class Sales extends Base{
     // 表名
     private static $table_name = 'sales';
     // 查询字段
-    private static $columns = 'sales_id,sales_type,sales_people_name,sales_people_mobile,sales_price,sales_admin_name,sales_add_time,sales_project_class,p_class_name';
+    private static $columns = 'sales_id,sales_type,sales_people_name,sales_people_mobile,sales_price,sales_admin_name,sales_add_time,sales_project_class,p_class_name,sales_people_card';
     public static function getTableName(){
         return parent::$table_prefix.self::$table_name;
     }

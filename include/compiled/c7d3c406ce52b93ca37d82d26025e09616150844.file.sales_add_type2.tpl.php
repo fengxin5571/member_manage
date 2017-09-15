@@ -1,10 +1,45 @@
-<{include file ="header.tpl"}>
-<{include file ="navibar.tpl"}>
-<{include file ="sidebar.tpl"}>
+<?php /* Smarty version Smarty-3.1.15, created on 2017-09-15 13:52:52
+         compiled from "E:\wamp64\www\member_manage\include\template\panel\sales_add_type2.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:1518259bb6638a1cf38-48148732%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'c7d3c406ce52b93ca37d82d26025e09616150844' => 
+    array (
+      0 => 'E:\\wamp64\\www\\member_manage\\include\\template\\panel\\sales_add_type2.tpl',
+      1 => 1505454416,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '1518259bb6638a1cf38-48148732',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_59bb6638abb748_19963195',
+  'variables' => 
+  array (
+    'osadmin_action_alert' => 0,
+    'osadmin_quick_note' => 0,
+    'project_classes' => 0,
+    'project_class' => 0,
+    'project_info' => 0,
+    'admin_url' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_59bb6638abb748_19963195')) {function content_59bb6638abb748_19963195($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+<?php echo $_smarty_tpl->getSubTemplate ("navibar.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+<?php echo $_smarty_tpl->getSubTemplate ("sidebar.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <!-- START 以上内容不需更改，保证该TPL页内的标签匹配即可 -->
 
-<{$osadmin_action_alert}>
-<{$osadmin_quick_note}>
+<?php echo $_smarty_tpl->tpl_vars['osadmin_action_alert']->value;?>
+
+<?php echo $_smarty_tpl->tpl_vars['osadmin_quick_note']->value;?>
+
  <style>
 #sales_people_name-error{
 	color:red
@@ -79,9 +114,15 @@
 				<label>所属项目分类</label>
 				<select name="project_class_id" onchange="get_sales_item(this.options[this.selectedIndex].value,2)" validate="required:true">
 				<option value="">-请选择-</option>
-				<{foreach from=$project_classes item=project_class}>
-				<option value="<{$project_class.p_class_id}>" <{if $project_info.project_class_id==$project_class.p_class_id}>selected<{/if}>><{$project_class.p_class_name}></option>
-				<{/foreach}>
+				<?php  $_smarty_tpl->tpl_vars['project_class'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['project_class']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['project_classes']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['project_class']->key => $_smarty_tpl->tpl_vars['project_class']->value) {
+$_smarty_tpl->tpl_vars['project_class']->_loop = true;
+?>
+				<option value="<?php echo $_smarty_tpl->tpl_vars['project_class']->value['p_class_id'];?>
+" <?php if ($_smarty_tpl->tpl_vars['project_info']->value['project_class_id']==$_smarty_tpl->tpl_vars['project_class']->value['p_class_id']) {?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['project_class']->value['p_class_name'];?>
+</option>
+				<?php } ?>
 				</select>
 				<div id="sales_item_div" style="display:none">
 				<label>消费项目</label>
@@ -98,7 +139,8 @@
     </div>
 </div>
 <script>
-var admin_url='<{$admin_url}>';
+var admin_url='<?php echo $_smarty_tpl->tpl_vars['admin_url']->value;?>
+';
 
 function get_member(){
 	var member_condition=$('#member_condition').val();
@@ -200,4 +242,5 @@ $(function(){
 });
 </script>
 <!-- END 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
-<{include file="footer.tpl" }>
+<?php echo $_smarty_tpl->getSubTemplate ("footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+<?php }} ?>

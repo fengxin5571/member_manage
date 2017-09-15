@@ -1,11 +1,11 @@
-function get_sales_item(project_class_id){
+function get_sales_item(project_class_id,sales_type){
     var html=$("#sales_item_div").html();
 	var price=0;
     $.ajax({
 		url:admin_url+"/ajax/project_item.php",
 		type:"post",
 		dataType:"json",
-		data:{method:"add",project_class_id:project_class_id},
+		data:{method:"add",project_class_id:project_class_id,sales_type:sales_type},
 		success:function(data){
 			console.log(data);
 			$.each(data,function(k,v){

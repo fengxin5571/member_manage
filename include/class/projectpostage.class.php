@@ -10,13 +10,14 @@ class Projectpostage extends Base{
         return parent::$table_prefix.self::$table_name;
     }
     //获取资费设置
-    public static function get_postage($project_id){
+    public static function get_postage($project_id,$postage_type){
         if(empty($project_id)){
             return false;
         }
         $db=self::__instance();
-        $condition['project_id']=$project_id;
-        $condition['ORDER']="postage_type asc";
+        $condition['AND']['project_id']=$project_id;
+        $condition['AND']['postage_type']=$postage_type;
+        
         $list=$db->select(self::getTableName(),self::$columns,$condition);
         return $list;
     }

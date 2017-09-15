@@ -8,7 +8,7 @@
 
 <div class="well">
     <ul class="nav nav-tabs">
-      <li class="active" style="margin-left: 50em;"><a href="#home" data-toggle="tab" style="color: #0088cc;">会员余额 - 金额明细查看</a></li>
+      <li class="active" style="padding-left: 45%;"><a href="#home" data-toggle="tab" style="color: #0088cc;">会员余额 - 金额明细查看</a></li>
     </ul>	
      <div class="tab-pane active in" id="home" style="width: 900px;margin: auto;overflow: hidden;">
     <div  style="width: 450px;float: left;">
