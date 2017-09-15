@@ -1,6 +1,6 @@
 <?php
 define ('ACCESS',1); 
-error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 //autoload 使用常量
 define ( 'ADMIN_BASE', dirname ( __FILE__ ) . '/../../include' );
 define ( 'ADMIN_BASE_LIB', ADMIN_BASE . '/lib/' );
@@ -15,7 +15,7 @@ define ( 'TEMPLATE_CONFIGS', ADMIN_BASE . '/config/' );
 define ( 'TEMPLATE_CACHE', ADMIN_BASE . '/cache/' );
 
 //OSAdmin常量
-define ( 'ADMIN_URL' ,'http://localhost/Member_manage');
+define ( 'ADMIN_URL' ,'http://dcjuhe.com/jinguiyuan');
 define ( 'ADMIN_TITLE' ,'会员管理后台');
 define ( 'COMPANY_NAME' ,'会员管理系统');
 define('ADMIN_VERSION',"1.0");
@@ -24,11 +24,11 @@ define('DEBUG',1);
 //OSAdmin数据库设置
 define ( 'OSA_DB_ID' ,'osadmin');
 $DATABASE_LIST[OSA_DB_ID] = array (
-	"server"=>'60.205.153.37',
+	"server"=>'bdm247336221.my3w.com',
 	"port"=>'3306',
-	"username"=> 'root', 
-	"password"=>'abc..123##@)5', 
-	"db_name"=>'osadmin' );
+	"username"=>'bdm247336221', 
+	"password"=>'admin1234', 
+	"db_name"=>'bdm247336221_db' );
 
 //样例数据库设置
 define ( 'SAMPLE_DB_ID' ,'sample');
@@ -47,7 +47,7 @@ define( 'OSA_ENCRYPT_KEY','whatafuckingday!');
 define ( 'OSA_TABLE_PREFIX' ,'osa_');
 
 //页面设置
-define ( 'DEBUG' ,false);
+define ( 'DEBUG' ,0);
 define ( 'PAGE_SIZE', 25 );
 
 $OSA_TEMPLATES=array(

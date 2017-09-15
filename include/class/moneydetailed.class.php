@@ -40,8 +40,9 @@ class Moneydetailed extends Base{
         return $member_detailed_list;
     }
     //获取总数
-    public static function count(){
+    public static function count($member_id){
         $db=self::__instance();
+		$condition['detailed_member_id']=$member_id;
         $num = $db->count ( self::getTableName(), $condition );
         return $num;
     }

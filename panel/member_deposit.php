@@ -8,7 +8,7 @@ if($method=="add_money"&&$member_id){//充值
         Common::exitWithError("对不起，没有此会员！", "panel/member_list.php");
     }
     if(Common::isPost()){//是否提交
-        $member_money_info=Membermoney::get_member_money($member_id);//获取会员金额
+        $member_money_info=MemberMoney::get_member_money($member_id);//获取会员金额
         if($member_money_info){
             $new_price=$member_money_info['m_money_price']+$member_add_money;
             $money_data['m_money_price']=$new_price;

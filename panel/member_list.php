@@ -46,10 +46,10 @@ if($method=="edit"&&$member_id){
     $member_info=Member::get_member_info($member_id);
     if($member_info){
         $member_info['member_level']=Memberlevel::get_level($member_info['member_level_id']);
-        $member_info['member_money']=Membermoney::get_member_money($member_info['member_id']);
+        $member_info['member_money']=MemberMoney::get_member_money($member_info['member_id']);
     }
     $start = ($page_no - 1) * $page_size;
-    $row_count = Moneydetailed::count ();
+    $row_count = Moneydetailed::count ($member_id);
     $total_page=$row_count%$page_size==0?$row_count/$page_size:ceil($row_count/$page_size);
     $total_page=$total_page<1?1:$total_page;
     $page_no=$page_no>($total_page)?($total_page):$page_no;
